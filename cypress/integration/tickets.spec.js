@@ -71,23 +71,28 @@ describe("Tickets", () => {
   /* -------------------------------------------- */
   
   it.only("preenchendo somente campos obrigatorios", () => {
+
+    /* define conjunto de variaveis e valores para rotina externa */
     const customer = {
       firstName: "João",
       lastName: "Silva",
       email: "joaosilva@exemplo.com"
     }
 
+    /* rotina para preenchimento de campos */
     cy.preencherCamposObrigatorios(customer)
 
+    /* Verifica se botão Enviar está habilitado (não-desabilitado) */
     cy.get("button[type='submit']")
       .as("submitButton")
       .should("not.be.disabled")
 
     //cy.get("button[type='reset']").uncheck()
 
+    /* envia formulario */
     cy.get("@submitButton").click()
 
-   /* -------------------------------------------------------
+   /* ------------- Exemplo: ---------------------------------
     cy
       .get('h1') // select by tag
       .get('.square') // select by class
